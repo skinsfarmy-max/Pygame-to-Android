@@ -46,10 +46,17 @@ jobs:
           sudo apt-get install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses-dev cmake libffi-dev libssl-dev
           cd ${{ github.workspace }}
           buildozer appclean
-          buildozer android debug
+          
+          # Автоматически принимаем все лицензии Android SDK перед сборкой
+          mkdir -p ~/.buildozer/android/platform/android-sdk/licenses
+          echo -e "\n24431f26631b2b346b1e6d32f700d6117c31547a\n504667f4c0de7af1a06de9f4b1727b84351f2910\n27444a5331b749647b18537ef63c4c44a37e4c16" > ~/.buildozer/android/platform/android-sdk/licenses/android-sdk-license
+          
+          # Запуск сборки в тихом автоматическом режиме
+          yes | buildozer android debug
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: package
           path: bin/*.apk
+
