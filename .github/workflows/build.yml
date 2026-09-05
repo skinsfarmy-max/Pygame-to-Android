@@ -43,7 +43,7 @@ jobs:
           export APP_ANDROID_ACCEPT_SDK_LICENSE=1
           export BUILDOZER_WARN_ON_ROOT=0
           sudo apt-get update
-          sudo apt-get install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses6-dev libncursesw6-dev libtinfo6 cmake libffi-dev libssl-dev
+          sudo apt-get install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses-dev cmake libffi-dev libssl-dev
           cd ${{ github.workspace }}
           buildozer appclean
           buildozer android debug
